@@ -1,0 +1,71 @@
+<!--pages/roomList/roomList.wxml-->
+<view class="tabs">
+  <view class="item">
+    <van-dropdown-menu active-color="{{mainColor}}">
+      <van-dropdown-item value="{{ storeId }}" options="{{ stores }}"  bind:change="storeDropdown" />
+  </van-dropdown-menu>
+  </view>
+  <view class="item">
+    <view class="btn red" bindtap="openStoreDoor">开大门</view>
+  </view>
+</view>
+<view class="container">
+  <view class="list">
+    <view class="item" wx:for="{{doorList}}" wx:key="item">
+      <view class="left">
+        <view class="info">
+          <text class="name">{{item.roomName}}（{{item.type===1?'小包':item.type===2?'中包':item.type===3?'大包':item.type===4?'豪包':'商务包'}}）</text>
+        </view>
+        <view class="info">
+          <label>门店：</label>
+          <text>{{item.storeName}}</text>
+        </view>
+        <view class="info">
+          <label>状态：</label>
+          <text>{{item.status==1?'空闲':item.status==2?'待清洁':item.status==3?'使用中':item.status==4?'已预约':'禁用'}}</text>
+        </view>
+        <block wx:if="{{item.status == 2}}">
+          <view class="tip color-attention" wx:if="{{item.endTime}}">
+             待清洁 | {{item.startTime}}开始
+          </view>
+        </block>
+        <block wx:if="{{item.status == 3}}">
+          <view class="tip color-attention" wx:if="{{item.endTime}}">
+              使用中 | {{item.endTime}}结束
+          </view>
+        </block>
+        <block wx:if="{{item.status == 4}}">
+          <view class="tip color-attention" wx:if="{{item.endTime}}">
+              已预订 | {{item.startTime}}开始
+          </view>
+        </block>
+      </view>
+      <block wx:if="{{userinfo.userType!=14}}">
+      <view class="right">
+        <view class="btn red" bindtap="roomOp" data-room="{{item}}">控制功能</view>
+      </view>
+    </block>
+    </view>
+  </view>
+  <view class="buttom">- 加载完毕 -</view>
+</view>
+<!-- 房间控制弹出 -->
+<van-dialog use-slot title="房间控制" show="{{ showRoomOp }}" confirm-button-text="关闭" bind:confirm="closeRoomOp">
+  <view class="dialog">
+   <view class="item">
+    <view class="name">
+      【{{roomName}}】
+    </view>
+   </view>
+    <view class="item">
+        <view class="btn red" bindtap="openDoor">开电</view>
+        <view class="btn red" bindtap="closeDoor">关电</view>
+        <view class="btn red" bindtap="toPlaceOrder">代下单</view>
+    </view>
+    <view class="item">
+        <view class="btn waring" bindtap="disableRoom">启用禁用</view>
+        <view class="btn waring" bindtap="testYunlaba">测试喇叭</view>
+        <view class="btn waring" bindtap="clearAndFinish">保洁完成</view>
+    </view>
+  </view>
+</van-dialog>

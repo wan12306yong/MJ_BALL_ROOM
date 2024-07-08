@@ -1,0 +1,294 @@
+<!-- pages/orderSubmit/orderSubmit.wxml -->
+<wxs src="../../utils/magic.wxs" module="magic" />
+<block wx:if="{{isLogin}}">
+<view class="container" style="{{isIpx?'padding-bottom:188rpx':'padding-bottom:140rpx'}}">
+  <view class="section top">
+    <!-- <view class="logo">{{doorname}}</view> -->
+    <view class="topInfo">
+      <view class="left">
+        <block wx:if="{{roominfodata.imageUrls.length>0}}">
+          <image class="img" src="{{magic.split(roominfodata.imageUrls)[0]}}"></image>
+        </block>
+        <block wx:else>
+          <image class="img" src="../static/img/logo.png"></image>
+        </block>
+      </view>
+      <view class="right">
+        <view class="info">
+          <view class="name">
+            {{roominfodata.roomName}}
+            <block wx:if="{{roominfodata.type == 0}}">
+              <text class="type">（特价包）</text>
+            </block>
+            <block wx:elif="{{roominfodata.type == 1}}">
+              <text class="type">（小包）</text>
+            </block>
+            <block wx:elif="{{roominfodata.type == 2}}">
+              <text class="type">（中包）</text>
+            </block>
+            <block wx:elif="{{roominfodata.type == 3}}">
+              <text class="type">（大包）</text>
+            </block>
+             <block wx:elif="{{roominfodata.type == 4}}">
+              <text class="type">（豪包）</text>
+            </block>
+            <block wx:else>
+              <text class="type">（商务包）</text>
+            </block>
+            <block wx:if="{{roominfodata.status == 0}}">
+            <text class="flag disabled">禁用</text>
+            </block>
+            <block wx:elif="{{roominfodata.status == 1}}">
+              <text class="flag undo">空闲中</text>
+            </block>
+            <block wx:elif="{{roominfodata.status == 2}}">
+              <text class="flag daiqingjie">待清洁</text>
+            </block>
+            <block wx:elif="{{roominfodata.status == 3}}">
+              <text class="flag doing">使用中</text>
+            </block>
+            <block wx:else>
+              <text class="flag bukeyong">已预约</text>
+            </block>
+          </view>
+          <view class="tags">
+            <block wx:for="{{magic.split(roominfodata.label)}}" wx:for-item="labelitem" wx:key="label">
+              <view class="tag">{{labelitem}}</view>
+            </block>
+          </view>
+        </view>
+        <view class="bottom">
+          <view class="priceInfo">
+            <view class="price color-attention">
+              <text style="color: black;font-size: 26rpx;">每小时</text>
+              ￥{{roominfodata.price}}
+            </view>
+            <block wx:if="{{roominfodata.deposit}}">
+              <view class="price color-attention">
+                <text style="color: black;font-size: 26rpx;">押金</text>
+                ￥{{roominfodata.deposit}}
+              </view>
+            </block>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="tip" wx:if="{{roominfodata.endTime}}">
+            <block wx:if="{{roominfodata.status}}==3" >
+              {{roominfodata.endTime}}结束，房间清洁时间{{clearTime}}分钟
+            </block> 
+    </view>
+    <view class="timeSlot">
+      <block wx:for="{{timeHourAllArr}}" wx:for-item="houritem2">
+        <view class="time {{houritem2.disable?'disabled':''}}">{{houritem2.hour}}</view>
+      </block>
+    </view>
+  </view>
+  <view class="section">
+    <view class="times">
+      <image class="img" src="../static/icon/time.png" mode="widthFix" style="width: 60rpx;height: 60rpx;"/>
+      <view class="item">
+        <view mode="time" bind:tap="setshowSelectHour">
+          <view class="time">
+            {{view_begin_time}}
+            <icon class="iconfont icon-editor"></icon>
+          </view>
+        </view>
+      </view>
+      <text>至</text>
+      <view class="item">
+        <view mode="time">
+          <view class="timeoff">
+            {{view_end_time}}
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="times-quick">
+      <view class="top">
+        <view class="item {{select_time_index == 0?'active':''}}" bind:tap="selectTimeHour" data-index="0">
+          <view class="hours">4小时</view>
+          <view class="subTitle">推荐</view>
+        </view>
+        <!-- <view class="item {{select_time_index == 1?'active':''}}" bind:tap="selectTimeHour" data-index="1">
+          <view class="hours">6小时</view>
+        </view> -->
+        <view class="item {{select_time_index == 2?'active':''}}" bind:tap="otherTime" data-index="2">
+          <view class="hours">其他</view>
+          <view class="subTitle">自定义时长</view>
+        </view>
+        <view class="item {{select_time_index == 3?'active':''}}" bind:tap="selectTimeHour" data-index="3">
+          <view class="hours">通宵</view>
+          <view class="subTitle">现在开始</view>
+        </view>
+        <view class="item {{select_time_index == 4?'active':''}}" bind:tap="selectTimeHour" data-index="4">
+          <view class="hours">通宵</view>
+          <view class="subTitle">{{txStartHour}}时后开始</view>
+        </view>
+      </view>
+    </view>
+    <!-- 套餐列表 -->
+    <view class="pkgList">
+    <scroll-view class="scroll-y" scroll-y wx:if="{{pkgList.length>0}}">
+      <view class="item {{select_pkg_index == index?'active':''}}" bind:tap="selectPkgInfo" data-id="{{item.pkgId}}" wx:for="{{pkgList}}" wx:key="pkgList" data-index="{{index}}" data-hour="{{item.hours}}">
+        <view class="name">
+          <text style="color: rgb(233, 23, 23);font-size: 28rpx;">￥{{item.price}}</text> 
+          {{item.pkgName}} 
+          (<text wx:if="{{item.roomType==null || item.roomType==0}}">不限包间</text>
+          <text wx:if="{{item.roomType==1}}">限小包</text>
+          <text wx:if="{{item.roomType==2}}">限中包</text>
+          <text wx:if="{{item.roomType==3}}">限大包</text>
+          <text wx:if="{{item.roomType==4}}">限豪包</text>
+          <text wx:if="{{item.roomType==5}}">限商务包</text>
+         
+          )
+        </view>
+        <view class="can-time">
+          时间：<text wx:if="{{item.enableTime && item.enableTime.length ==24}}">不限制</text>
+            <text wx:else>{{item.enableTime}}时可用</text>
+        </view>
+        <view class="can-time">
+          星期：<text  wx:if="{{item.enableWeek && item.enableWeek.length ==26}}">不限制</text>
+          <text wx:else>{{item.enableWeek}}可用</text>
+        </view>
+         <view class="can-time">
+          套餐时长： {{item.hours}}小时
+          <text wx:if="{{item.balanceBuy}}">—— 此套餐支持余额支付</text>
+          <text wx:else>不可余额支付</text>
+        </view>
+      </view>
+    </scroll-view>
+     
+    </view>
+  </view>
+  <view class="section orderPrice">
+    <view class="item" bindtap="goCoupon">
+      <view class="left">优惠卡券</view>
+      <view class="right">
+        <block wx:if="{{submit_couponInfo.couponName}}">
+          <block wx:if="{{submit_couponInfo.type == 1}}">
+            <text class="price-coupon">
+              {{submit_couponInfo.couponName}}(抵扣{{submit_couponInfo.price}}小时)
+            </text>
+          </block>
+          <block wx:if="{{submit_couponInfo.type == 2}}">
+            <text class="price-coupon">
+              {{submit_couponInfo.couponName}}(满减{{submit_couponInfo.price}}元)
+            </text>
+          </block>
+          <block wx:if="{{submit_couponInfo.type == 3}}">
+            <text class="price-coupon">
+              {{submit_couponInfo.couponName}}(延长{{submit_couponInfo.price}}小时)
+            </text>
+          </block>
+         
+        </block>
+        <block wx:else>
+          <block wx:if="{{couponCount>0}}">
+            <text class="price-coupon">{{couponCount}}张</text>
+          </block>
+          <block wx:else>
+            <text class="price-coupon">暂无</text>
+          </block>
+        </block>
+        <view class="iconfont icon-right"></view>
+      </view>
+      <!-- 不选券时 -->
+      <!-- <view class="right"><text class="no-coupon">1张可用</text><view class="iconfont icon-right"></view></view> -->
+      <!-- 不可用情况 -->
+      <!-- <view class="right"><text class="price-disabled">暂不可用</text><view class="iconfont icon-right"></view></view> -->
+    </view>
+    <view class="item">
+      <view class="left">
+        <view class="iconfont icon-yanquan color-primary"></view>
+        团购验券
+      </view>
+      <view class="right">
+        <input class="input" maxlength="35" placeholder="输入/粘贴团购券码" value="{{scanCodeMsg}}" bindinput='bindscanCode' />
+        <view class="iconfont icon-saomiao" bind:tap="scanCode"></view>
+      </view>
+    </view>
+  </view>
+  <view class="section orderPrice orderPay">
+    <view class="item">
+      <view class="left">
+        <view class="iconfont icon-weixinzhifu color-primary"></view>
+        微信支付
+      </view>
+      <view class="right" bind:tap="goSelectPayType" data-index="1">
+        <block wx:if="{{payselectindex == 1}}">
+          <view class="iconfont icon-xuanzhong color-attention"></view>
+        </block>
+        <block wx:else>
+          <view class="iconfont icon-xuanze color-primary"></view>
+        </block>
+      </view>
+    </view>
+    <view class="item" style="margin-bottom: 20rpx;">
+      <view class="left">
+        <view class="iconfont icon-pay color-primary"></view>
+        余额支付
+        <view class="desc">
+          <view>账户余额：{{balance}}元</view>
+          <view>赠送余额：{{giftBalance}}元</view>
+        </view>
+      </view>
+      <view class="right" bind:tap="goSelectPayType" data-index="2">
+        <view>
+          <text class="color-primary link" bind:tap="goRecharge">充值</text>
+        </view>
+        <block wx:if="{{payselectindex == 2}}">
+          <view class="iconfont icon-xuanzhong color-attention"></view>
+        </block>
+        <block wx:else>
+          <view class="iconfont icon-xuanze color-primary"></view>
+        </block>
+      </view>
+    </view>
+  </view>
+  <view style="font-size: 24rpx; color: #b0b1b1;padding-left: 6rpx">
+    <view>1. 可以提前{{leadDay}}天下单,{{minHour}}小时起订,点击其他时间进行切换.</view>
+    <view>2. 下单后可提前{{leadHour}}小时开始消费,未开始订单可以更换房间.</view>
+    <view>3. 因包间保洁需要,上一场结束{{clearTime}}分钟后才可预定.</view>
+    <view>4. 本店通宵场的计费从{{txStartHour}}时起,共{{txHour}}个小时.</view>
+    <view>5. 下单5分钟内可以取消订单,超过5分钟联系客服处理.</view>
+    <view>6. 迟到消费,订单按原预定时间开始计费.</view>
+    <view>7. 支付的押金,在订单结束5分钟后,自动原路退回.</view>
+  </view>
+  <view class="order-bar {{isIpx?'fix-iphonex-button':''}}">
+    <view class="left">
+      <view class="total color-attention">
+        <text>￥{{pricestring}}元</text>
+        <block wx:if="{{roominfodata.deposit}}">
+          <text style="font-size:26rpx">（含押金{{roominfodata.deposit}}元）</text>
+        </block>
+      </view>
+      <block wx:if="{{roominfodata.deposit}}">
+          <view class="time">订单结束5分钟后,押金自动退回</view>
+       </block>
+      <view class="time color-primary">共{{order_hour}}小时</view>
+    </view>
+    <button hover-class="button-click" class="btn bg-primary" bindtap="SubmitOrderInfoData">
+      确定预约
+    </button>
+  </view>
+</view>
+</block>
+<block wx:else>
+    <view class="containerlogin">
+      <view class="photo">
+        <view class="img">
+          <image src="../static/img/logo.png" mode="widthFix" />
+        </view>
+        <view class="name">{{appName}}</view>
+      </view>
+      <button hover-class="button-click"  class="loginBtn bg-primary" bindgetphonenumber="phone" open-type="getPhoneNumber">一键登录</button>
+    </view>
+</block>
+<van-popup show="{{ showtimefalge }}" position="bottom" custom-style="height: 60%">
+  <van-datetime-picker type="datetime" value="{{currentDate}}" bind:confirm="timeChange" bind:cancel="timeCancel" formatter="{{formatter}}" min-date="{{minDay}}" max-date="{{maxDay}}" min-hour="{{minHour}}"></van-datetime-picker>
+</van-popup>
+<!-- 其他时间弹窗 -->
+<van-popup show="{{ show }}" position="bottom">
+  <van-picker show-toolbar columns="{{ hour_options }}" bind:confirm="onTimeConfirm" bind:cancel="onTimeCancel" />
+</van-popup>

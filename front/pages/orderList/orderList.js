@@ -188,7 +188,7 @@ Page({
         "post", {
           "orderId": that.data.orderInfo.orderId,
         },
-        "app.globalData.userDatatoken.accessToken",
+        app.globalData.userDatatoken.accessToken,
         "",
         function success(info) {
           console.info('返回111===');
@@ -237,14 +237,14 @@ Page({
           "status": that.data.status,
           "orderColumn": that.data.orderColumn
         },
-        "app.globalData.userDatatoken.accessToken",
+        app.globalData.userDatatoken.accessToken,
         message,
         function success(info) {
           console.info('订单列表===');
           console.info(info);
           if (info.code == 0) {
             if (e == "refresh"){
-              if(info.data?.list.length>0)
+              if(info.data.list.length>0)
               {
                 console.log('有数组+++++++');
                 that.setData({
@@ -309,9 +309,8 @@ Page({
                   console.info('返回111===');
                   console.info(info);
                   if (info.code == 0) {
-                      // if(info.data){
-                        // app.globalData.userDatatoken = info.data;
-                        app.globalData.userDatatoken = "info.data";
+                      if(info.data){
+                        app.globalData.userDatatoken = info.data;
                         app.globalData.isLogin=true;
                         that.setData({
                           isLogin:true,
@@ -319,7 +318,7 @@ Page({
                         //缓存服务器返回的用户信息
                         wx.setStorageSync("userDatatoken", info.data)
                         that.getOrderListdata("refresh");
-                      // }
+                      }
                   }
                 },
                 function fail(info) {
@@ -341,7 +340,7 @@ Page({
         "1",
         "get", {
         },
-        "app.globalData.userDatatoken.accessToken",
+        app.globalData.userDatatoken.accessToken,
         "",
         function success(info) {
           console.info('我的信息===');

@@ -139,13 +139,12 @@ Page({
   getuserinfo:function(){
     var that = this;
     if (app.globalData.isLogin) {
-      // app.globalData.userDatatoken.accessToken="0000000000000"
       http.request(
         "/member/user/get",
         "1",
         "get", {
         },
-        "app.globalData.userDatatoken.accessToken",
+        app.globalData.userDatatoken.accessToken,
         "",
         function success(info) {
           console.info('我的信息===');

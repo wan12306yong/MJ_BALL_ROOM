@@ -194,191 +194,7 @@ Page({
         message,
         function success(info) {
           if (info.code == 0) {
-            // let list = info.data.list
-            let   list=
-            [
-                {
-                  "storeId" : 12,
-                  "storeName" : "棋牌室模板A",
-                  "cityNname" : "成都",
-                  "content" : null,
-                  "headImg" : "https:\/\/images.scyanzu.com\/7c0a2f81a629e1c1e8324890d0e8a31ba00075f5e59316671ab6e859446546ec.png",
-                  "storeEnvImg" : "https:\/\/images.scyanzu.com\/b4bccfc6701fcd58be44ae93c3b5664fe64ffd80c2ab511d473172445a9c8a3e.png",
-                  "bannerImg" : "https:\/\/images.scyanzu.com\/b4bccfc6701fcd58be44ae93c3b5664fe64ffd80c2ab511d473172445a9c8a3e.png",
-                  "notice" : "15675555180",
-                  "lat" : 30.757349,
-                  "lon" : 104.865837,
-                  "address" : "成都市锦江区人民南路一段",
-                  "qrCode" : null,
-                  "btnImg" : "https:\/\/images.scyanzu.com\/16bc66daaa9c537ec0f5dd3ddaac4fde368e151c1dac496e867fd8742b83beb7.png",
-                  "tgImg" : "https:\/\/images.scyanzu.com\/ba7fc61df503ef9d49d16a5fad8280d11553145306a8277c4f25e644f5e90200.png",
-                  "openImg" : "https:\/\/images.scyanzu.com\/cd1d29157414e8a3ea368f93ecd1dadeab006b7171b6b4388857915f3bfb48d1.png",
-                  "wifiImg" : "https:\/\/images.scyanzu.com\/36f20e97768e981ef01d89b9a9014a02ad24578116eae65584220d53c1439f35.png",
-                  "kfImg" : "https:\/\/images.scyanzu.com\/fdef2ea3aaf4e8c8ba37670ea0c193def4a73e9cafb5d8a46f61ea299100c173.png",
-                  "czImg" : "https:\/\/images.scyanzu.com\/7c6a14ee3a85621119be53f8c8babfd5bba8c114c5f2f52f799ecfc2e880d19d.png",
-                  "qhImg" : "https:\/\/images.scyanzu.com\/71aee9adc07b007f09d6ee8e82534a46c5c9dd69faefb5026619b9a3aec3e3fa.png",
-                  "clearOpen" : 1,
-                  "clearTime" : 10,
-                  "showTxPrice" : 1,
-                  "txStartHour" : 22,
-                  "txHour" : 9,
-                  "delayLight" : 1,
-                  "workPrice" : 1,
-                  "orderDoorOpen" : 1,
-                  "status" : 0,
-                  "wifiInfo" : "CMCC 密码8个8",
-                  "label" : null,
-                  "kefuPhone" : "15675555180",
-                  "orderWebhook" : null,
-                  "gameWebhook" : null,
-                  "douyinPoiId" : null,
-                  "roomNum" : 1,
-                  "totalMoney" : 0.00,
-                  "totalWithdrawal" : 0.00,
-                  "creator" : "250",
-                  "createTime" : "2024-04-04 22:27:39",
-                  "updater" : "450",
-                  "updateTime" : "2024-04-09 09:15:39",
-                  "deleted" : 0,
-                  "tenantId" : 150
-                },
-                {
-                  "storeId" : 13,
-                  "storeName" : "台球模板",
-                  "cityName" : "成都",
-                  "content" : null,
-                  "headImg" : "https:\/\/images.scyanzu.com\/a6c6657cd2ec8df8f9acb35baa5c215e4ed03c6accd10d18e95fefb1b51879df.png",
-                  "storeEnvImg" : "https:\/\/images.scyanzu.com\/4c5a2994b028f9d6704630981acb189e658b40654f42eec204482101abfc266c.png",
-                  "bannerImg" : "https:\/\/images.scyanzu.com\/713111631d5f2053c9d8936d8542633e5ff98126deffae1bf917bc545755d7b7.png",
-                  "notice" : "15675555180",
-                  "lat" : 30.657349,
-                  "lon" : 104.065837,
-                  "address" : "四川省成都市人民南路一段86号",
-                  "qrCode" : null,
-                  "btnImg" : "https:\/\/images.scyanzu.com\/02abf4cab9d662c3f19458cab370a22183d1752f43c1e81e6fb6eed4d8a48ea0.png",
-                  "tgImg" : "https:\/\/images.scyanzu.com\/fb0ec0c3dcfbe274f6b06e894ff847337d483fce7b2688a7721b760575aa2b06.png",
-                  "openImg" : "https:\/\/images.scyanzu.com\/81777341ea0dd1973a32d34f7ea0cd4feecd95aabe6ce094f9da4b050a88ba67.png",
-                  "wifiImg" : "https:\/\/images.scyanzu.com\/a6c21614aa4fa52095dd75e390da11c356ce72399c46f220122d9d147bdf51e7.png",
-                  "kfImg" : "https:\/\/images.scyanzu.com\/0f4dfebc836612039666d95e0f881c5ffcd1b3b246c70397e593b68a7c012db5.png",
-                  "czImg" : "https:\/\/images.scyanzu.com\/95a6e5caa94f4ac83a7c385edfeb65cde566a1da04bdd7c2b08793caac873743.png",
-                  "qhImg" : "https:\/\/images.scyanzu.com\/1e20252e002ad049012905c324196aed077d1a7731a719478476de2ca403a31d.png",
-                  "clearOpen" : 1,
-                  "clearTime" : 5,
-                  "showTxPrice" : 0,
-                  "txStartHour" : 23,
-                  "txHour" : 9,
-                  "delayLight" : 1,
-                  "workPrice" : 1,
-                  "orderDoorOpen" : 1,
-                  "status" : 0,
-                  "wifiInfo" : "CMCC 密码8个8",
-                  "label" : null,
-                  "kefuPhone" : "15675555180",
-                  "orderWebhook" : null,
-                  "gameWebhook" : null,
-                  "douyinPoiId" : null,
-                  "roomNum" : 1,
-                  "totalMoney" : 0.00,
-                  "totalWithdrawal" : 0.00,
-                  "creator" : "250",
-                  "createTime" : "2024-04-04 22:27:39",
-                  "updater" : "450",
-                  "updateTime" : "2024-04-09 09:15:39",
-                  "deleted" : 0,
-                  "tenantId" : 150
-                },
-                {
-                  "storeId" : 12,
-                  "storeName" : "棋牌室模板A",
-                  "cityNname" : "成都",
-                  "content" : null,
-                  "headImg" : "https:\/\/images.scyanzu.com\/7c0a2f81a629e1c1e8324890d0e8a31ba00075f5e59316671ab6e859446546ec.png",
-                  "storeEnvImg" : "https:\/\/images.scyanzu.com\/b4bccfc6701fcd58be44ae93c3b5664fe64ffd80c2ab511d473172445a9c8a3e.png",
-                  "bannerImg" : "https:\/\/images.scyanzu.com\/b4bccfc6701fcd58be44ae93c3b5664fe64ffd80c2ab511d473172445a9c8a3e.png",
-                  "notice" : "15675555180",
-                  "lat" : 30.757349,
-                  "lon" : 104.865837,
-                  "address" : "成都市锦江区人民南路一段",
-                  "qrCode" : null,
-                  "btnImg" : "https:\/\/images.scyanzu.com\/16bc66daaa9c537ec0f5dd3ddaac4fde368e151c1dac496e867fd8742b83beb7.png",
-                  "tgImg" : "https:\/\/images.scyanzu.com\/ba7fc61df503ef9d49d16a5fad8280d11553145306a8277c4f25e644f5e90200.png",
-                  "openImg" : "https:\/\/images.scyanzu.com\/cd1d29157414e8a3ea368f93ecd1dadeab006b7171b6b4388857915f3bfb48d1.png",
-                  "wifiImg" : "https:\/\/images.scyanzu.com\/36f20e97768e981ef01d89b9a9014a02ad24578116eae65584220d53c1439f35.png",
-                  "kfImg" : "https:\/\/images.scyanzu.com\/fdef2ea3aaf4e8c8ba37670ea0c193def4a73e9cafb5d8a46f61ea299100c173.png",
-                  "czImg" : "https:\/\/images.scyanzu.com\/7c6a14ee3a85621119be53f8c8babfd5bba8c114c5f2f52f799ecfc2e880d19d.png",
-                  "qhImg" : "https:\/\/images.scyanzu.com\/71aee9adc07b007f09d6ee8e82534a46c5c9dd69faefb5026619b9a3aec3e3fa.png",
-                  "clearOpen" : 1,
-                  "clearTime" : 10,
-                  "showTxPrice" : 1,
-                  "txStartHour" : 22,
-                  "txHour" : 9,
-                  "delayLight" : 1,
-                  "workPrice" : 1,
-                  "orderDoorOpen" : 1,
-                  "status" : 0,
-                  "wifiInfo" : "CMCC 密码8个8",
-                  "label" : null,
-                  "kefuPhone" : "15675555180",
-                  "orderWebhook" : null,
-                  "gameWebhook" : null,
-                  "douyinPoiId" : null,
-                  "roomNum" : 1,
-                  "totalMoney" : 0.00,
-                  "totalWithdrawal" : 0.00,
-                  "creator" : "250",
-                  "createTime" : "2024-04-04 22:27:39",
-                  "updater" : "450",
-                  "updateTime" : "2024-04-09 09:15:39",
-                  "deleted" : 0,
-                  "tenantId" : 150
-                },
-                {
-                  "storeId" : 13,
-                  "storeName" : "台球模板",
-                  "cityName" : "成都",
-                  "content" : null,
-                  "headImg" : "https:\/\/images.scyanzu.com\/a6c6657cd2ec8df8f9acb35baa5c215e4ed03c6accd10d18e95fefb1b51879df.png",
-                  "storeEnvImg" : "https:\/\/images.scyanzu.com\/4c5a2994b028f9d6704630981acb189e658b40654f42eec204482101abfc266c.png",
-                  "bannerImg" : "https:\/\/images.scyanzu.com\/713111631d5f2053c9d8936d8542633e5ff98126deffae1bf917bc545755d7b7.png",
-                  "notice" : "15675555180",
-                  "lat" : 30.657349,
-                  "lon" : 104.065837,
-                  "address" : "四川省成都市人民南路一段86号",
-                  "qrCode" : null,
-                  "btnImg" : "https:\/\/images.scyanzu.com\/02abf4cab9d662c3f19458cab370a22183d1752f43c1e81e6fb6eed4d8a48ea0.png",
-                  "tgImg" : "https:\/\/images.scyanzu.com\/fb0ec0c3dcfbe274f6b06e894ff847337d483fce7b2688a7721b760575aa2b06.png",
-                  "openImg" : "https:\/\/images.scyanzu.com\/81777341ea0dd1973a32d34f7ea0cd4feecd95aabe6ce094f9da4b050a88ba67.png",
-                  "wifiImg" : "https:\/\/images.scyanzu.com\/a6c21614aa4fa52095dd75e390da11c356ce72399c46f220122d9d147bdf51e7.png",
-                  "kfImg" : "https:\/\/images.scyanzu.com\/0f4dfebc836612039666d95e0f881c5ffcd1b3b246c70397e593b68a7c012db5.png",
-                  "czImg" : "https:\/\/images.scyanzu.com\/95a6e5caa94f4ac83a7c385edfeb65cde566a1da04bdd7c2b08793caac873743.png",
-                  "qhImg" : "https:\/\/images.scyanzu.com\/1e20252e002ad049012905c324196aed077d1a7731a719478476de2ca403a31d.png",
-                  "clearOpen" : 1,
-                  "clearTime" : 5,
-                  "showTxPrice" : 0,
-                  "txStartHour" : 23,
-                  "txHour" : 9,
-                  "delayLight" : 1,
-                  "workPrice" : 1,
-                  "orderDoorOpen" : 1,
-                  "status" : 0,
-                  "wifiInfo" : "CMCC 密码8个8",
-                  "label" : null,
-                  "kefuPhone" : "15675555180",
-                  "orderWebhook" : null,
-                  "gameWebhook" : null,
-                  "douyinPoiId" : null,
-                  "roomNum" : 1,
-                  "totalMoney" : 0.00,
-                  "totalWithdrawal" : 0.00,
-                  "creator" : "250",
-                  "createTime" : "2024-04-04 22:27:39",
-                  "updater" : "450",
-                  "updateTime" : "2024-04-09 09:15:39",
-                  "deleted" : 0,
-                  "tenantId" : 150
-                },
-              ]
-              
+            let list = info.data.list
             let allMarkers = []
             if(list.length>0){
               for(let i=0;i<list.length;i++){
@@ -442,24 +258,6 @@ Page({
         "获取中...",
         function success(info) {
           if (info.code == 0) {
-            info={
-              "data": [
-                {
-                  "id" : 1,
-                  "imgUrl" : "https:\/\/images.scyanzu.com\/banner12125412312.png",
-                  "title" : "广告1",
-                  "jumpUrl" : null,
-                  "sortId" : 0,
-                  "type" : 1,
-                  "creator" : "127",
-                  "createTime" : "2023-07-28 22:31:40",
-                  "updater" : "127",
-                  "updateTime" : "2024-04-09 09:17:09",
-                  "deleted" : 0,
-                  "tenantId" : 150
-                }
-              ]}
-              
             that.setData({
               bannershowlist: info.data
             });
@@ -487,12 +285,12 @@ Page({
         that.getMainListdata();
         // 处理位置信息，比如将位置信息显示在页面上
         // 示例中使用的是util.js中的函数，开发者可以根据需要自行编写
-        // util.showLocation(latitude, longitude)
+        //util.showLocation(latitude, longitude)
       },
       fail: function(res) {
         that.getMainListdata()
         // 如果获取位置信息失败，可以处理错误情况
-        console.log('获取位置失败', res.errMsg)
+        //console.log('获取位置失败', res.errMsg)
       }
     })
   },

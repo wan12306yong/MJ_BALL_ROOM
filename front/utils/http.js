@@ -40,11 +40,11 @@ function request(url, urltype, method, data,  token,message,successBack, failBac
     },
     method: method,
     success: function(res) {
+      
       if (res.statusCode == 200) {
-        res.data.code =0
+
         if(res.data.code == 401){
           //直接到登录界面
-          console.error(res.data.msg)
           wx.navigateTo({
             url: '../login/login',
           })

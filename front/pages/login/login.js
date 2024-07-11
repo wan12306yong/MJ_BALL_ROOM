@@ -15,7 +15,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    console.log(options.query)
+
   },
 
   /**
@@ -67,7 +67,7 @@ Page({
 
   },
   phone:function(e){
-    // console.log("授权用户手机号");
+    console.log("授权用户手机号");
     var that = this;
     if(e.detail.errMsg=="getPhoneNumber:fail user deny"){
       wx.showToast({title: '已取消授权'})
@@ -86,13 +86,14 @@ Page({
                 "/member/auth/weixin-mini-app-login",
                 "1",
                 "post", {
-                  "loginCode": e.detail.code,
-                  "phoneCode": res.code,
+                  "phoneCode": e.detail.code,
+                  "loginCode": res.code
                 },
                 "",
                 "获取中...",
                 function success(info) {
                   console.info('返回111===');
+                  console.info(info);
                   if (info.code == 0) {
                       if(info.data){
                         app.globalData.userDatatoken = info.data;
@@ -115,7 +116,7 @@ Page({
                   }
                 },
                 function fail(info) {
-                  console.log("登录失败")
+                  
                 }
               )
             } else {

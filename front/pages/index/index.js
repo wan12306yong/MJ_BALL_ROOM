@@ -382,65 +382,17 @@ Page({
     var that = this;
     //if (app.globalData.isLogin) 
     {
-      // app.globalData.userDatatoken.accessToken="0000000000000"
       http.request(
         "/member/index/getStoreInfo"+'/'+that.data.storeId,
         "1",
         "get", {
         },
-        "app.globalData.userDatatoken.accessToken",
+        app.globalData.userDatatoken.accessToken,
         "获取中...",
         function success(info) {
           console.info('门店信息===');
           // console.info(info);
-        
           if (info.code == 0) {
-            info.data=
-            {
-              "storeId" : 12,
-              "storeName" : "棋牌室模板A",
-              "cityNname" : "成都",
-              "content" : null,
-              "headImg" : "https:\/\/images.scyanzu.com\/7c0a2f81a629e1c1e8324890d0e8a31ba00075f5e59316671ab6e859446546ec.png",
-              "storeEnvImg" : "https:\/\/images.scyanzu.com\/b4bccfc6701fcd58be44ae93c3b5664fe64ffd80c2ab511d473172445a9c8a3e.png,https:\/\/images.scyanzu.com\/b4bccfc6701fcd58be44ae93c3b5664fe64ffd80c2ab511d473172445a9c8a3e.png" ,
-              "bannerImg" : "https:\/\/images.scyanzu.com\/b4bccfc6701fcd58be44ae93c3b5664fe64ffd80c2ab511d473172445a9c8a3e.png,https:\/\/images.scyanzu.com\/b4bccfc6701fcd58be44ae93c3b5664fe64ffd80c2ab511d473172445a9c8a3e.png" ,
-              "notice" : "15675555180",
-              "lat" : 30.757349,
-              "lon" : 104.865837,
-              "address" : "成都市锦江区人民南路一段",
-              "qrCode" : null,
-              "btnImg" : "https:\/\/images.scyanzu.com\/16bc66daaa9c537ec0f5dd3ddaac4fde368e151c1dac496e867fd8742b83beb7.png",
-              "tgImg" : "https:\/\/images.scyanzu.com\/ba7fc61df503ef9d49d16a5fad8280d11553145306a8277c4f25e644f5e90200.png",
-              "openImg" : "https:\/\/images.scyanzu.com\/cd1d29157414e8a3ea368f93ecd1dadeab006b7171b6b4388857915f3bfb48d1.png",
-              "wifiImg" : "https:\/\/images.scyanzu.com\/36f20e97768e981ef01d89b9a9014a02ad24578116eae65584220d53c1439f35.png",
-              "kfImg" : "https:\/\/images.scyanzu.com\/fdef2ea3aaf4e8c8ba37670ea0c193def4a73e9cafb5d8a46f61ea299100c173.png",
-              "czImg" : "https:\/\/images.scyanzu.com\/7c6a14ee3a85621119be53f8c8babfd5bba8c114c5f2f52f799ecfc2e880d19d.png",
-              "qhImg" : "https:\/\/images.scyanzu.com\/71aee9adc07b007f09d6ee8e82534a46c5c9dd69faefb5026619b9a3aec3e3fa.png",
-              "clearOpen" : 1,
-              "clearTime" : 10,
-              "showTxPrice" : 1,
-              "txStartHour" : 22,
-              "txHour" : 9,
-              "delayLight" : 1,
-              "workPrice" : 1,
-              "orderDoorOpen" : 1,
-              "status" : 0,
-              "wifiInfo" : "CMCC 密码8个8",
-              "label" : null,
-              "kefuPhone" : "15675555180",
-              "orderWebhook" : null,
-              "gameWebhook" : null,
-              "douyinPoiId" : null,
-              "roomNum" : 1,
-              "totalMoney" : 0.00,
-              "totalWithdrawal" : 0.00,
-              "creator" : "250",
-              "createTime" : "2024-04-04 22:27:39",
-              "updater" : "450",
-              "updateTime" : "2024-04-09 09:15:39",
-              "deleted" : 0,
-              "tenantId" : 150
-            }
             if(null!=info.data){
               that.setData({
                 doorinfodata: info.data
